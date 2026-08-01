@@ -1,13 +1,13 @@
 {
   "name": "lead-qualification-agent",
   "version": "1.0.0",
-  "description": "Agente autónomo para calificación y enriquecimiento de leads usando Mastra y Groq",
+  "description": "Agente aut\u00f3nomo para calificaci\u00f3n y enriquecimiento de leads usando Mastra y Groq",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
+    "build": "node api.js && tsc",
+    "start": "node api.js && node dist/index.js",
+    "dev": "node api.js && tsx src/index.ts"
   },
   "dependencies": {
     "@mastra/core": "^0.1.26",
