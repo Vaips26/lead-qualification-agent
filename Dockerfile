@@ -1,17 +1,15 @@
-# Etapa de construcción
-FROM node:20-alpine AS builder
+FROM node:20-slim
+
+RUN apt-get update -y && apt-get install -y openssl
+
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build
 
-# Etapa de producción
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --only=production
-COPY --from=builder /app/dist ./dist
+RUN npx prisma generate --schema=node_modules/@mastra/core/dist/prisma/schema.prisma
+
+RUN npm run build
 
 EXPOSE 3000
 ENV NODE_ENV=production

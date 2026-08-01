@@ -37,8 +37,10 @@ const mastra = Mastra.init({
   },
 });
 
-// 2. Registrar la Herramienta de Enriquecimiento Real mediante Scraper Inline de Mastra
+// 2. Registrar la Herramienta de Enriquecimiento Real mediante Scraper Inline de Mastra (Tipado estricto)
 mastra.registerApi('enrichCompanyData', {
+  type: 'enrichCompanyData',
+  description: 'Busca información detallada de una empresa a partir de su dominio web corporativo.',
   label: 'Busca información detallada de una empresa a partir de su dominio web corporativo.',
   schema: z.object({
     domain: z.string().describe('El dominio del correo electrónico de la empresa (ej. stripe.com)'),
@@ -100,8 +102,10 @@ mastra.registerApi('enrichCompanyData', {
   },
 });
 
-// 3. Registrar la Herramienta de Registro en CRM Inline
+// 3. Registrar la Herramienta de Registro en CRM Inline (Tipado estricto)
 mastra.registerApi('registerLeadInCRM', {
+  type: 'registerLeadInCRM',
+  description: 'Guarda la información calificada del lead en la base de datos o sistema CRM.',
   label: 'Guarda la información calificada del lead en la base de datos o sistema CRM.',
   schema: z.object({
     email: z.string().email(),
@@ -155,10 +159,10 @@ mastra.registerApi('registerLeadInCRM', {
 app.get('/', (req: Request, res: Response) => {
   const leads = JSON.parse(fs.readFileSync(LEADS_FILE, 'utf8'));
   
-  // Agrupar leads para las columnas del Tablero Kanban
-  const hotLeadsCards = [];
-  const warmLeadsCards = [];
-  const coldLeadsCards = [];
+  // Agrupar leads para las columnas del Tablero Kanban (Tipado estricto string[])
+  const hotLeadsCards: string[] = [];
+  const warmLeadsCards: string[] = [];
+  const coldLeadsCards: string[] = [];
 
   const rows = leads.map((lead: any) => {
     let badgeClass = 'badge-cold';
@@ -593,7 +597,7 @@ app.get('/', (req: Request, res: Response) => {
 app.post('/submit', async (req: Request, res: Response) => {
   const { name, email, message } = req.body;
   try {
-    const agentRunner = await mastra.getAgent({ connectionId: 'system', agentId: 'leadAgent' });
+    const agentRunner = (await mastra.getAgent({ connectionId: 'system', agentId: 'leadAgent' })) as any;
     if (agentRunner) {
       const prompt = `Procesa este prospecto entrante: Nombre: ${name}, Email: ${email}, Message: "${message || 'Sin mensaje.'}"`;
       await agentRunner({ prompt });
@@ -624,7 +628,7 @@ app.post('/webhook/lead', async (req: Request, res: Response) => {
     return res.status(400).json({ error: 'Parámetros inválidos.' });
   }
   try {
-    const agentRunner = await mastra.getAgent({ connectionId: 'system', agentId: 'leadAgent' });
+    const agentRunner = (await mastra.getAgent({ connectionId: 'system', agentId: 'leadAgent' })) as any;
     if (!agentRunner) throw new Error('No se pudo inicializar el agente.');
     const prompt = `Procesa este prospecto entrante: Nombre: ${name}, Email: ${email}, Message: "${message || 'Sin mensaje.'}"`;
     const agentResponse = await agentRunner({ prompt });
