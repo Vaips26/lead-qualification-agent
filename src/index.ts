@@ -16,6 +16,38 @@ if (!fs.existsSync(LEADS_FILE)) {
   fs.writeFileSync(LEADS_FILE, JSON.stringify([], null, 2));
 }
 
+// Parche de robustez 1: Crear programáticamente la carpeta de blueprints si no existe al arrancar
+const blueprintsDir = path.resolve('src/blueprints');
+if (!fs.existsSync(blueprintsDir)) {
+  fs.mkdirSync(blueprintsDir, { recursive: true });
+}
+
+// Parche de robustez 2: Auto-crear la carpeta de agentes y el archivo leadAgent.json si no existen (Blindaje para la nube)
+const agentsDir = path.resolve('src/agents');
+if (!fs.existsSync(agentsDir)) {
+  fs.mkdirSync(agentsDir, { recursive: true });
+}
+
+const leadAgentPath = path.join(agentsDir, 'leadAgent.json');
+if (!fs.existsSync(leadAgentPath)) {
+  console.log('🤖 [Auto-Sanación] Escribiendo configuración por defecto de leadAgent.json...');
+  const defaultAgentJson = {
+    "agent_instructions": "Eres un asistente de operaciones de ventas especializado en Calificación y Enriquecimiento de Leads corporativos B2B.\\n\\nTu tarea consiste en procesar la información de contacto de un nuevo prospecto y clasificarlo de forma automatizada usando tus herramientas:\\n\\nInstrucciones de flujo de trabajo:\\n1. Identifica y extrae el dominio del correo electrónico del prospecto.\\n2. Ejecuta la herramienta '\''enrichCompanyData'\'' con ese dominio para obtener metadatos reales del sitio web de la empresa.\\n3. Evalúa el prospecto según los siguientes criterios de prioridad:\\n   - HOT: Correo corporativo propio, empresa de tecnología o corporativa con presencia web clara, y un mensaje que muestre necesidad comercial activa.\\n   - WARM: Correo corporativo pero el mensaje muestra un interés informativo sin urgencia inmediata.\\n   - COLD: Correos con dominios públicos y personales (gmail, hotmail, etc.) o mensajes que no se alineen con soluciones empresariales.\\n4. Utiliza la herramienta '\''registerLeadInCRM'\'' para persistir los datos de manera estructurada en el sistema de registro simulado, redactando un correo de seguimiento personalizado basado en sus necesidades y los metadatos reales de su empresa, además de crear una tarea interna para el equipo.\\n5. Retorna al usuario la respuesta estructurada indicando que el proceso fue exitoso.",
+    "maxSteps": 5,
+    "model": {
+      "provider": "GROQ_VERCEL",
+      "name": "llama-3.3-70b-versatile",
+      "toolChoice": "auto"
+    },
+    "tools": {
+      "enrichCompanyData": {},
+      "registerLeadInCRM": {}
+    },
+    "outputs": {}
+  };
+  fs.writeFileSync(leadAgentPath, JSON.stringify(defaultAgentJson, null, 2));
+}
+
 // 1. Inicializar la instancia del Core de Mastra (Con parche de inicialización)
 const mastra = Mastra.init({
   name: 'lead-qualification-app',
@@ -631,7 +663,7 @@ app.post('/webhook/lead', async (req: Request, res: Response) => {
     const agentRunner = (await mastra.getAgent({ connectionId: 'system', agentId: 'leadAgent' })) as any;
     if (!agentRunner) throw new Error('No se pudo inicializar el agente.');
     const prompt = `Procesa este prospecto entrante: Nombre: ${name}, Email: ${email}, Message: "${message || 'Sin mensaje.'}"`;
-    const agentResponse = await agentRunner({ prompt });
+    const agentResponse = (await agentRunner({ prompt })) as any;
     return res.status(200).json({ success: true, agentOutput: agentResponse.text });
   } catch (error: any) {
     return res.status(500).json({ success: false, error: error.message });
