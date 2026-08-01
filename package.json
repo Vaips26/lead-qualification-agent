@@ -1,0 +1,24 @@
+{
+  "name": "lead-qualification-agent",
+  "version": "1.0.0",
+  "description": "Agente autónomo para calificación y enriquecimiento de leads usando Mastra y Groq",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@mastra/core": "^0.1.26",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.24",
+    "tsx": "^4.19.2",
+    "typescript": "^5.3.3"
+  }
+}

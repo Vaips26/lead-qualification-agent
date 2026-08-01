@@ -1,0 +1,85 @@
+[
+  {
+    "id": "lead_4szhmyu",
+    "email": "ventas@centrodetapizado.com",
+    "companyName": "Centro de Tapizado",
+    "score": "HOT",
+    "summary": "El prospecto ha expresado necesidad comercial activa para la creación de un agente de IA que genere cuentas y facturas automáticamente, lo que indica una alta prioridad para nuestro equipo de ventas",
+    "suggestedAction": "Contactar al equipo de ventas para discutir implementación de agente de IA",
+    "emailDraft": "Estimado Angel, gracias por considerar nuestra solución para la creación de un agente de IA que genere cuentas y facturas automáticamente. Nos gustaría programar una reunión para discutir cómo podemos ayudar a Centro de Tapizado a mejorar sus procesos. ¿Qué tal si nos ponemos en contacto la próxima semana?",
+    "crmTask": "Crear tarea para equipo de ventas: Contactar a Centro de Tapizado para discutir implementación de agente de IA para generación de cuentas y facturas",
+    "scrapedTitle": "Título del sitio web de Centro de Tapizado",
+    "scrapedDesc": "Meta-descripción del sitio web de Centro de Tapizado",
+    "notifications": [
+      "Alerta de alta prioridad despachada a Slack (#leads-priority)",
+      "Email de seguimiento encolado en servidor de despacho para: ventas@centrodetapizado.com"
+    ],
+    "timestamp": "24/7/2026, 8:19:59 p.m."
+  },
+  {
+    "id": "lead_tppwsvv",
+    "email": "contact@spotify.com",
+    "companyName": "Spotify",
+    "score": "HOT",
+    "summary": "El prospecto muestra un interés activo en desarrollar una solución de IA para reconocimiento de voces y categorización musical, lo que indica una necesidad comercial urgente.",
+    "suggestedAction": "Contactar al equipo de ventas de Spotify para discutir oportunidades de colaboración",
+    "emailDraft": "Estimado Julio, gracias por considerar nuestra solución para el desarrollo de un agente de IA para reconocimiento de voces y categorización musical. Nos gustaría programar una reunión para discutir cómo podemos ayudar a Spotify a mejorar su experiencia de usuario con nuestra tecnología de vanguardia.",
+    "crmTask": "Crear tarea para equipo de ventas: Contactar a Spotify para discutir soluciones de IA para reconocimiento de voces y categorización musical",
+    "scrapedTitle": "Spotify - Escucha música y podcasts gratis",
+    "scrapedDesc": "Spotify es una plataforma de streaming de música que permite a los usuarios acceder a millones de canciones y podcasts.",
+    "notifications": [
+      "Alerta de alta prioridad despachada a Slack (#leads-priority)",
+      "Email de seguimiento encolado en servidor de despacho para: contact@spotify.com"
+    ],
+    "timestamp": "24/7/2026, 8:15:02 p.m."
+  },
+  {
+    "id": "lead_kt5amzd",
+    "email": "angelviverosaguilar@gmail.com",
+    "companyName": "No disponible",
+    "score": "COLD",
+    "summary": "El prospecto busca ayuda con un agente de IA para uso cotidiano, pero el correo electrónico es personal y no proporciona información sobre la empresa.",
+    "suggestedAction": "Enviar correo de seguimiento y ofrecer asesoramiento sobre soluciones de IA",
+    "emailDraft": "Estimado Angel, gracias por considerarnos para su necesidad de un agente de IA. Nos gustaría saber más sobre su proyecto y cómo podemos ayudar. Por favor, no dude en hacernos saber si necesita más información.",
+    "crmTask": "Investigar posibles soluciones de IA para uso cotidiano y contactar al prospecto",
+    "scrapedTitle": "No disponible",
+    "scrapedDesc": "No disponible",
+    "notifications": [
+      "Registro estándar de lead en logs del sistema"
+    ],
+    "timestamp": "24/7/2026, 7:51:11 p.m."
+  },
+  {
+    "id": "lead_6vamqbo",
+    "email": "collaboration@github.com",
+    "companyName": "GitHub",
+    "score": "HOT",
+    "summary": "El prospecto muestra una necesidad comercial activa y clara para integrar un agente de IA en su plataforma de desarrollo, lo que indica una alta prioridad para el equipo de ventas",
+    "suggestedAction": "Contactar al equipo de ventas para programar una reunión con Markus y discutir la implementación de la solución de IA",
+    "emailDraft": "Estimado Markus, gracias por considerar nuestra solución para la integración de IA en su plataforma. Nos gustaría programar una reunión para discutir los detalles de la implementación y la fase de pruebas.",
+    "crmTask": "Investigar posibles soluciones de integración de IA para la automatización de la revisión de código y asignar un equipo de pruebas",
+    "notifications": [
+      "Alerta de alta prioridad despachada a Slack (#leads-priority)",
+      "Email de seguimiento encolado en servidor de despacho para: collaboration@github.com"
+    ],
+    "timestamp": "24/7/2026, 7:36:21 p.m."
+  },
+  {
+    "id": "lead_vxd5997",
+    "email": "pedro@gmail.com",
+    "companyName": "Desconocida",
+    "score": "COLD",
+    "summary": "El prospecto utiliza un correo electrónico personal y el mensaje indica que busca una solución para una tarea escolar, lo que no se alinea con soluciones empresariales.",
+    "suggestedAction": "No se requiere acción comercial",
+    "timestamp": "24/7/2026, 6:45:41 p.m."
+  },
+  {
+    "id": "lead_rpfvecv",
+    "email": "jane.doe@stripe.com",
+    "companyName": "Stripe",
+    "score": "HOT",
+    "summary": "La empresa utiliza un correo corporativo propio, tiene más de 50 empleados, pertenece a la industria tecnológica y el mensaje muestra una necesidad comercial activa y urgente.",
+    "suggestedAction": "Contactar al equipo de ventas de inmediato para ofrecer una demostración personalizada de la plataforma de IA",
+    "timestamp": "24/7/2026, 6:43:37 p.m."
+  }
+]

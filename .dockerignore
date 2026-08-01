@@ -1,0 +1,5 @@
+node_modules
+dist
+.env
+mastra.db
+npm-debug.log
